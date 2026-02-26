@@ -1,0 +1,464 @@
+🛡 Moderne, Sikker og Driftssikker IT – samlet ét sted
+Kort version (møde / netværk / hjemmeside top)
+
+Vi hjælper små og mellemstore virksomheder med at få styr på deres IT – sikkert, stabilt og uden kompleksitet.
+
+Vi leverer en samlet løsning, hvor drift, sikkerhed, backup og support er samlet i én fast aftale.
+
+Én leverandør. Én løsning. Fuld tryghed.
+
+Hvad vi gør – forklaret enkelt
+
+De fleste mindre virksomheder har:
+
+Antivirus ét sted
+
+Backup et andet sted
+
+Microsoft 365 uden styring
+
+Ingen reel overvågning
+
+Ingen plan hvis noget går galt
+
+Vi samler det hele.
+
+🔐 1. Sikkerhed – Beskyttelse mod cyberangreb
+
+Vi beskytter virksomhedens computere og data mod:
+
+Ransomware
+
+Phishing
+
+Malware
+
+Datatab
+
+Uautoriseret adgang
+
+Det betyder:
+
+✔ Avanceret endpoint-beskyttelse
+✔ Overvågning af trusler
+✔ Hurtig reaktion ved angreb
+✔ Beskyttelse af følsomme data
+
+Så I ikke selv skal bekymre jer om cybertrusler.
+
+💾 2. Backup & Gendannelse – Hvis uheldet er ude
+
+Uanset om det er:
+
+Hackerangreb
+
+Hardwarefejl
+
+Medarbejderfejl
+
+Utilsigtet sletning
+
+Så kan data gendannes hurtigt.
+
+Vi sørger for:
+
+✔ Automatisk backup
+✔ Test af gendannelse
+✔ Hurtig genetablering af drift
+✔ Minimal nedetid
+
+IT må ikke være et single point of failure.
+
+🖥 3. Overvågning & Vedligeholdelse
+
+Vi overvåger jeres IT løbende og fanger problemer, før de udvikler sig.
+
+Det betyder:
+
+✔ Automatiske opdateringer
+✔ Patch management
+✔ Proaktiv fejlretning
+✔ Løbende systemkontrol
+
+I stedet for at reagere på problemer, forebygger vi dem.
+
+📧 4. Microsoft 365 – Professionel håndtering
+
+Vi leverer og administrerer:
+
+Microsoft 365 Business
+
+E-mail sikkerhed
+
+E-mail arkivering
+
+Brugerstyring
+
+Rettighedskontrol
+
+Backup af Microsoft 365
+
+I får en professionel opsætning fra start – ikke bare en licens.
+
+🔎 5. Compliance & Datasikkerhed
+
+Vi hjælper med at:
+
+Beskytte følsomme data
+
+Reducere risiko for datalæk
+
+Understøtte GDPR-krav
+
+Dokumentere sikkerhedsniveau
+
+Det skaber tryghed – både internt og over for kunder.
+
+🤝 6. Én samlet IT-partner
+
+I stedet for:
+
+Flere leverandører
+
+Uklare ansvarsforhold
+
+Skyldplacering ved fejl
+
+Får I:
+
+✔ Én fast kontakt
+✔ Fast pris pr. bruger
+✔ Klar ansvarsfordeling
+✔ Professionel rådgivning
+
+Vi tager ansvar for helheden.
+
+🎯 Hvem vi hjælper
+
+Vi arbejder typisk med virksomheder med:
+
+5–25 medarbejdere
+
+Microsoft 365
+
+Behov for stabil og sikker drift
+
+Ønske om fast, forudsigelig IT-økonomi
+
+📦 Vores model
+
+Fast pris pr. bruger pr. måned.
+
+Det inkluderer:
+
+IT-drift
+
+Sikkerhed
+
+Backup
+
+Overvågning
+
+Support
+
+Microsoft 365 administration
+
+Ingen skjulte overraskelser.
+
+🔥 Positionering (det vigtige)
+
+Du skal positionere dig som:
+
+En sikkerheds- og driftsorienteret IT-partner
+– ikke en “IT-mand der installerer antivirus”.
+
+Du leverer:
+
+Stabilitet
+
+Forudsigelighed
+
+Risikominimering
+
+Professionel struktur
+
+Ekstra stærk afslutning
+
+IT skal ikke være noget, man tænker over i hverdagen.
+Det skal bare fungere – sikkert og stabilt.
+
+Det sørger vi for.
+
+Hvis du vil, kan jeg nu:
+
+Stramme det endnu mere til i en “salgsbrochure-version”
+
+Lave en ultra kort LinkedIn-tekst
+
+Eller hjælpe dig med at definere 2–3 konkrete pakkeløsninger med priser
+
+Nu begynder det at ligne en rigtig virksomhed 👌
+
+Kan du oppsure vores samtale vedre opsatrt af enmands MSP idag, så jeg kan kopire ned i noter
+
+Selvfølgelig 👍
+Her er en struktureret opsummering af hele vores samtale om opstart af enmands-MSP, skrevet så du nemt kan kopiere det direkte ind i dine noter.
+
+🧠 Overordnet strategi
+
+Målet er at starte en standardiseret, sikker og skalerbar enmands-MSP, hvor:
+
+Du sælger en fast, samlet løsning
+
+Du har gode marginer (55–65%+)
+
+Du undgår kompleksitet i starten
+
+Du fokuserer på 5–25 brugere segmentet
+
+Du bygger på faste pakker – ikke custom løsninger
+
+Du skal ikke sælge software.
+Du skal sælge Managed Secure Workplace.
+
+🧱 Grundstack (Start simpelt)
+1️⃣ Microsoft 365 Business Premium
+
+Din baseline pr. bruger:
+
+Exchange Online
+
+Intune
+
+Defender for Business
+
+Azure AD / Entra ID
+
+Conditional Access
+
+MFA
+
+Din indkøbspris:
+1.516,35 kr./år (≈ 126 kr./md)
+
+Anbefalet salgspris:
+≈ 1.800 kr./år (≈ 150 kr./md)
+→ 15–20% margin
+
+2️⃣ RMM
+
+NinjaOne (eller alternativ)
+
+Pris eksempel:
+20 kr./bruger/md
+
+Bruges til:
+
+Overvågning
+
+Patch management
+
+Remote support
+
+Automatisering
+
+3️⃣ Endpoint Security
+
+Du overvejer Acronis Cyber Protect Cloud i stedet for Defender pga. mindre konfigurationsarbejde.
+
+Fordele:
+
+Backup + EDR + patch + monitoring i én agent
+
+Mindre kompleks opsætning
+
+Mindre Intune tuning
+
+God startplatform som solo
+
+Alternativer:
+
+ESET
+
+WithSecure
+
+Bitdefender
+
+Strategisk beslutning:
+Hold det simpelt i år 1.
+
+💰 Prismodel (Realistisk dansk marked)
+
+Eksempel med 350 kr. managed IT:
+
+Omkostninger pr. bruger (eksempel)
+
+M365: 126 kr.
+
+Ninja: 20 kr.
+
+Security / Acronis: 30–50 kr.
+
+Diverse værktøjer: 20–30 kr.
+
+Total kost: ~180–220 kr.
+
+Anbefalet salgsstruktur
+
+Managed IT:
+375–450 kr.
+
+Microsoft 365:
+150 kr.
+
+Security (hvis særskilt):
+75–125 kr.
+
+👉 Realistisk totalpris:
+500–650 kr. pr. bruger pr. måned
+
+Målsætning
+
+Sigte mod:
+55–65% bruttoavance
+
+Du må ikke underprise dig selv.
+Din profit ligger i managed service-delen – ikke i Microsoft marginen.
+
+🏢 Kundesegment
+
+Ideelt:
+
+5–25 brugere
+
+Microsoft 365
+
+Ingen intern IT
+
+Behov for struktur og sikkerhed
+
+SMV’er uden compliance-afdeling
+
+Overvej:
+Minimum månedlig faktura 3.000 kr.
+
+5 brugere må ikke give 2.000 kr./md.
+
+💼 Migration (projektarbejde – ikke inkluderet)
+
+IMAP → M365:
+1.500–2.000 kr. pr. bruger
+
+Google → M365:
+2.000–3.000 kr. pr. bruger
+
+Minimum projekt:
+7.500–10.000 kr.
+
+Migration skal altid faktureres separat.
+
+🎯 Positionering
+
+Du sælger ikke:
+
+Antivirus
+
+Licenser
+
+RMM
+
+Du sælger:
+
+✔ Stabil drift
+✔ Sikker arbejdsplads
+✔ Backup & gendannelse
+✔ Overvågning
+✔ Fast IT-partner
+✔ Forudsigelig økonomi
+
+📦 Din kernepakke (eksempel)
+
+Secure Workplace
+
+Microsoft 365 Business Premium
+
+Endpoint security
+
+Backup
+
+Overvågning
+
+Patch management
+
+Supportaftale
+
+Årlig sikkerhedsgennemgang
+
+Fast pris pr. bruger.
+
+⚠️ Vigtige strategiske pointer
+
+Standardiser alt
+
+Undgå custom løsninger i starten
+
+Undgå små kunder uden minimum
+
+Automatisér mest muligt
+
+Hold stack simpelt år 1
+
+Fokusér på margin – ikke omsætning
+
+📈 Realistisk år 1 mål
+
+3 kunder á 15 brugere:
+45 brugere
+
+Ved 550 kr./bruger:
+≈ 24.750 kr./md
+≈ 297.000 kr./år i recurring
+
+Plus migrationsprojekter.
+
+Realistisk at nå 400–500k i omsætning første år (hvis aktiv).
+
+🔐 Defender vs Acronis konklusion
+
+Defender:
+
+Kraftfuld
+
+Mere konfiguration
+
+Mere kompleks
+
+Acronis:
+
+Mere “plug and manage”
+
+Alt samlet
+
+Mindre startfriktion
+
+God solo-start løsning
+
+Din tanke om Acronis som startplatform er fornuftig.
+
+🧠 Den vigtigste erkendelse
+
+Du bygger ikke en IT-biks.
+
+Du bygger:
+
+En standardiseret, sikker og skalerbar serviceforretning.
+
+Hvis du vil, kan jeg også lave:
+
+En 12-måneders handlingsplan
+
+En break-even beregning
+
+En konkret step-by-step launch plan
+
+Du er faktisk langt foran de fleste, der overvejer at starte MSP 👌

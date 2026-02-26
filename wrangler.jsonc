@@ -1,0 +1,10 @@
+{
+  "name": "visbyworker",
+  "main": "src/worker.ts",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./dist/public",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  }
+}
