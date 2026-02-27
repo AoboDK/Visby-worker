@@ -26,27 +26,69 @@ export function detectOS(): 'windows' | 'mac' | 'other' {
   return 'other';
 }
 
-export function downloadSupremoFile(): void {
+export function getBrowserName(): string {
+  const userAgent = navigator.userAgent.toLowerCase();
+  
+  if (userAgent.includes('edg')) return 'Edge';
+  if (userAgent.includes('chrome')) return 'Chrome';
+  if (userAgent.includes('safari') && !userAgent.includes('chrome')) return 'Safari';
+  if (userAgent.includes('firefox')) return 'Firefox';
+  if (userAgent.includes('opera') || userAgent.includes('opr')) return 'Opera';
+  
+  return 'din browser';
+}
+
+export function getDownloadLocationText(): string {
+  const browser = getBrowserName();
+  
+  switch (browser) {
+    case 'Chrome':
+    case 'Edge':
+      return 'nederst til venstre';
+    case 'Safari':
+      return 'øverst til højre';
+    case 'Firefox':
+      return 'øverst til højre';
+    default:
+      return 'i din browser';
+  }
+}
+
+export interface DownloadInfo {
+  fileName: string;
+  downloadUrl: string;
+  os: 'windows' | 'mac' | 'other';
+}
+
+export function getDownloadInfo(): DownloadInfo {
   const os = detectOS();
   
+  let fileName: string;
   let downloadUrl: string;
   
   switch (os) {
     case 'windows':
-      // Direct download link for Windows EXE
+      fileName = 'Supremo.exe';
       downloadUrl = 'https://www.nanosystems.com/public/download/Supremo.exe';
       break;
     case 'mac':
-      // Direct download link for Mac DMG
+      fileName = 'Supremo.dmg';
       downloadUrl = 'https://www.nanosystems.com/public/download/macOS/stable/Supremo.dmg';
       break;
     default:
-      // Fallback to Windows download for other systems
+      fileName = 'Supremo.exe';
       downloadUrl = 'https://www.nanosystems.com/public/download/Supremo.exe';
-      alert('Vi kunne ikke automatisk detektere dit operativsystem. Downloader Windows-version.');
       break;
   }
+  
+  return { fileName, downloadUrl, os };
+}
 
-  // Open download URL - both will download directly
-  window.open(downloadUrl, '_blank');
+export function downloadSupremoFile(): DownloadInfo {
+  const downloadInfo = getDownloadInfo();
+  
+  // Trigger the download
+  window.open(downloadInfo.downloadUrl, '_blank');
+  
+  return downloadInfo;
 }

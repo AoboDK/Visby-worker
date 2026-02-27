@@ -1,13 +1,38 @@
 // client/src/components/layout/Navbar.tsx
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { downloadSupremoFile } from "@/utils/download";
+import { downloadSupremoFile, getDownloadLocationText } from "@/utils/download";
+import { useToast } from "@/hooks/use-toast";
 
 export function Navbar() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleDownload = () => {
+    const downloadInfo = downloadSupremoFile();
+    const locationText = getDownloadLocationText();
+    
+    toast({
+      title: (
+        <div className="flex items-center gap-2">
+          <CheckCircle2 className="w-5 h-5 text-green-500" />
+          <span>Din download er klar!</span>
+        </div>
+      ),
+      description: (
+        <div className="space-y-1 mt-1">
+          <p className="font-medium">{downloadInfo.fileName}</p>
+          <p className="text-sm text-muted-foreground">
+            Tjek {locationText} i din browser
+          </p>
+        </div>
+      ),
+      duration: 5000,
+    });
+  };
 
   const navItems = [
     { label: "Hjem", path: "/" },
@@ -55,7 +80,7 @@ export function Navbar() {
               )
             ))}
             <Button 
-              onClick={downloadSupremoFile}
+              onClick={handleDownload}
               className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6"
             >
               <Download className="w-4 h-4 mr-2" />
@@ -107,7 +132,7 @@ export function Navbar() {
               <div className="px-4">
                 <Button 
                   onClick={() => {
-                    downloadSupremoFile();
+                    handleDownload();
                     setIsOpen(false);
                   }}
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full"
