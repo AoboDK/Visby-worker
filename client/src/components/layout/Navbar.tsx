@@ -1,106 +1,125 @@
+// client/src/components/layout/Navbar.tsx
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { useState, useEffect } from "react";
-import { Menu, X, TerminalSquare } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { downloadSupremoFile } from "@/utils/download";
 
 export function Navbar() {
   const [location] = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Forside", path: "/" },
-    { name: "Ydelser", path: "/#services" },
-    { name: "Om os", path: "/#about" },
-    { name: "Kontakt", path: "/contact" },
+  const navItems = [
+    { label: "Hjem", path: "/" },
+    { label: "Ydelser", path: "/#services" },
+    { label: "Kontakt", path: "/contact" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "bg-transparent py-5"
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded bg-primary flex items-center justify-center text-primary-foreground group-hover:bg-accent transition-colors duration-300">
-            <TerminalSquare className="w-4 h-4" />
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight text-foreground">
-            Visby<span className="text-accent"> IT.</span>
-          </span>
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/">
+            <a className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">V</span>
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Visby IT
+              </span>
+            </a>
+          </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${
-                    location === link.path ? "text-accent" : "text-muted-foreground"
-                  }`}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              item.path.includes('#') ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  className="text-foreground/80 hover:text-accent transition-colors font-medium"
                 >
-                  {link.name}
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.path} href={item.path}>
+                  <a
+                    className={`text-foreground/80 hover:text-accent transition-colors font-medium ${
+                      location === item.path ? "text-accent" : ""
+                    }`}
+                  >
+                    {item.label}
+                  </a>
                 </Link>
-              </li>
+              )
             ))}
-          </ul>
-          <div className="h-4 w-px bg-border"></div>
-          <Link href="/contact">
-            <Button className="rounded-full px-6 font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+            <Button 
+              onClick={downloadSupremoFile}
+              className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6"
+            >
+              <Download className="w-4 h-4 mr-2" />
               Få Support
             </Button>
-          </Link>
-        </nav>
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t mt-3"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-secondary/50 transition-colors"
+            aria-label="Toggle menu"
           >
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.path}
-                  className="text-lg font-medium py-2 border-b border-border/50 text-foreground hover:text-accent transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
+            {isOpen ? (
+              <X className="w-6 h-6 text-foreground" />
+            ) : (
+              <Menu className="w-6 h-6 text-foreground" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-border animate-in slide-in-from-top">
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                item.path.includes('#') ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    className="text-foreground/80 hover:text-accent transition-colors font-medium px-4 py-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link key={item.path} href={item.path}>
+                    <a
+                      className={`text-foreground/80 hover:text-accent transition-colors font-medium px-4 py-2 block ${
+                        location === item.path ? "text-accent" : ""
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  </Link>
+                )
               ))}
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full mt-4 rounded-md">Få Support</Button>
-              </Link>
-            </nav>
-          </motion.div>
+              <div className="px-4">
+                <Button 
+                  onClick={() => {
+                    downloadSupremoFile();
+                    setIsOpen(false);
+                  }}
+                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Få Support
+                </Button>
+              </div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
-    </header>
+      </div>
+    </nav>
   );
 }
