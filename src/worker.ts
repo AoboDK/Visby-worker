@@ -62,6 +62,9 @@ async function handleApiRoute(
         });
       }
 
+      // Log attempt
+      console.log("Attempting to send email via Resend...");
+
       // Send email via Resend
       const emailResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -89,9 +92,11 @@ async function handleApiRoute(
         }),
       });
 
+      const responseData = await emailResponse.json();
+      console.log("Resend API response:", responseData);
+
       if (!emailResponse.ok) {
-        const error = await emailResponse.text();
-        console.error("Resend API error:", error);
+        console.error("Resend API error:", responseData);
         return new Response(
           JSON.stringify({ error: "Failed to send email" }),
           {
@@ -101,6 +106,7 @@ async function handleApiRoute(
         );
       }
 
+      console.log("Email sent successfully!");
       return new Response(JSON.stringify({ success: true }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
