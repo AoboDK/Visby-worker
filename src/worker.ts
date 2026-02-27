@@ -3,8 +3,8 @@
 
 interface Env {
   ASSETS: Fetcher;
-  // Future: Add environment variables here
-  // RESEND_API_KEY?: string;
+  RESEND_API_KEY: string;
+  // Future: Add more environment variables here
   // R2_BUCKET?: R2Bucket; // For file uploads
 }
 
@@ -62,18 +62,44 @@ async function handleApiRoute(
         });
       }
 
-      // TODO: Implement email sending
-      // Option 1: Use Resend API
-      // Option 2: Use Cloudflare Email Routing
-      // For now, log the data (in production, send email)
-      console.log("Contact form submission:", {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        company: data.company,
-        message: data.message,
-        timestamp: new Date().toISOString(),
+      // Send email via Resend
+      const emailResponse = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "Visby IT Kontaktformular <kontakt@visby.it>",
+          to: "kontakt@visby.it",
+          subject: `Ny henvendelse fra ${data.name}`,
+          html: `
+            <h2>Ny kontaktformular henvendelse</h2>
+            <p><strong>Navn:</strong> ${data.name}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+            <p><strong>Telefon:</strong> ${data.phone || "Ikke oplyst"}</p>
+            <p><strong>Virksomhed:</strong> ${data.company || "Ikke oplyst"}</p>
+            <hr>
+            <p><strong>Besked:</strong></p>
+            <p>${data.message.replace(/\n/g, '<br>')}</p>
+            <hr>
+            <p style="color: #666; font-size: 12px;">Sendt via visby.it kontaktformular</p>
+          `,
+          reply_to: data.email,
+        }),
       });
+
+      if (!emailResponse.ok) {
+        const error = await emailResponse.text();
+        console.error("Resend API error:", error);
+        return new Response(
+          JSON.stringify({ error: "Failed to send email" }),
+          {
+            status: 500,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          }
+        );
+      }
 
       return new Response(JSON.stringify({ success: true }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -121,4 +147,3 @@ function isValidContactData(data: any): boolean {
     data.message.length > 0
   );
 }
-
