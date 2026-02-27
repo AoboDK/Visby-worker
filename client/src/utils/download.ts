@@ -29,27 +29,24 @@ export function detectOS(): 'windows' | 'mac' | 'other' {
 export function downloadSupremoFile(): void {
   const os = detectOS();
   
-  let fileName: string;
+  let downloadUrl: string;
   
   switch (os) {
     case 'windows':
-      fileName = 'Supremo.exe';
+      // Direct download link for Windows
+      downloadUrl = 'https://www.supremocontrol.com/download-supremo/#download';
       break;
     case 'mac':
-      fileName = 'Supremo.dmg';
+      // Direct download link for Mac DMG
+      downloadUrl = 'https://www.nanosystems.it/public/download/macOS/Supremo.dmg';
       break;
     default:
-      // Fallback to Windows exe for other systems
-      fileName = 'Supremo.exe';
-      alert('Vi kunne ikke automatisk detektere dit operativsystem. Downloader Windows-version.');
+      // Fallback to Windows download for other systems
+      downloadUrl = 'https://www.supremocontrol.com/download-supremo/#download';
+      alert('Vi kunne ikke automatisk detektere dit operativsystem. Åbner Windows download-siden.');
       break;
   }
 
-  // Create temporary link and trigger download
-  const link = document.createElement('a');
-  link.href = `/${fileName}`;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  // Open download URL - Mac DMG will download directly, Windows opens download page
+  window.open(downloadUrl, '_blank');
 }
