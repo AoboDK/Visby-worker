@@ -7,6 +7,12 @@ compatibility_date = "2025-01-01"
 directory = "./dist/public"
 binding = "ASSETS"
 
+# Custom domain routes
+routes = [
+  { pattern = "visby.it/*", zone_name = "visby.it" },
+  { pattern = "www.visby.it/*", zone_name = "visby.it" }
+]
+
 # Optional: Add environment variables here if needed
 # [vars]
 # ENVIRONMENT = "production"
