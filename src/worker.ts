@@ -4,20 +4,16 @@
 interface Env {
   ASSETS: Fetcher;
   RESEND_API_KEY: string;
-  // Future: Add more environment variables here
-  // R2_BUCKET?: R2Bucket; // For file uploads
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    // Handle API routes
     if (url.pathname.startsWith("/api/")) {
       return handleApiRoute(request, url, env);
     }
 
-    // Serve static assets
     return env.ASSETS.fetch(request);
   },
 };
@@ -27,24 +23,20 @@ async function handleApiRoute(
   url: URL,
   env: Env
 ): Promise<Response> {
-  // CORS headers for API endpoints
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  // Handle preflight requests
   if (request.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // Contact form endpoint
   if (url.pathname === "/api/contact" && request.method === "POST") {
     try {
       const data = await request.json().catch(() => null);
 
-      // Validation
       if (!data || !isValidContactData(data)) {
         return new Response(
           JSON.stringify({ error: "Invalid request data" }),
@@ -55,17 +47,14 @@ async function handleApiRoute(
         );
       }
 
-      // Honeypot check (anti-spam)
       if (data.website) {
         return new Response(JSON.stringify({ success: true }), {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
 
-      // Log attempt
       console.log("Attempting to send email via Resend...");
 
-      // Send email via Resend
       const emailResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
@@ -122,9 +111,7 @@ async function handleApiRoute(
     }
   }
 
-  // Future: File upload endpoint for RMM software
   if (url.pathname === "/api/upload" && request.method === "POST") {
-    // TODO: Implement file upload to R2 bucket
     return new Response(
       JSON.stringify({ error: "File upload not yet implemented" }),
       {
@@ -134,14 +121,12 @@ async function handleApiRoute(
     );
   }
 
-  // 404 for unknown API routes
   return new Response(JSON.stringify({ error: "Not found" }), {
     status: 404,
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 }
 
-// Helper function to validate contact form data
 function isValidContactData(data: any): boolean {
   return (
     data &&
