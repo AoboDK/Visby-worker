@@ -32,9 +32,9 @@ export default function Download() {
     // Different instruction based on browser
     if (browser === 'Chrome' || browser === 'Edge') {
       return {
-        position: 'nederst til venstre',
+        position: 'øverst til højre',
         icon: <Chrome className="w-12 h-12 text-primary" />,
-        description: 'Klik på filen i download-bjælken nederst i din browser'
+        description: 'Klik på download-ikonet øverst til højre i din browser'
       };
     } else if (browser === 'Safari') {
       return {
@@ -52,7 +52,7 @@ export default function Download() {
   };
 
   const downloadLocation = getDownloadLocationImage();
-  const fileName = os === 'mac' ? 'Supremo.dmg' : 'Supremo.exe';
+  const fileName = os === 'mac' ? 'agent(My_Organization).sh' : 'agent(My_Organization).msi';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/20">
@@ -80,7 +80,7 @@ export default function Download() {
                   <DownloadIcon className="w-10 h-10 text-primary" />
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Download Supremo
+                  Download Action1 Agent
                 </h1>
               </>
             )}
@@ -118,8 +118,8 @@ export default function Download() {
                   <h3 className="text-xl font-semibold">Åbn filen</h3>
                   <p className="text-muted-foreground">
                     {os === 'mac' 
-                      ? 'Dobbeltklik på .dmg filen og træk Supremo til Applications'
-                      : 'Dobbeltklik på .exe filen for at installere Supremo'}
+                      ? 'Kør .sh filen i Terminal for at installere Action1 agent'
+                      : 'Dobbeltklik på .msi filen for at installere Action1 agent'}
                   </p>
                   <div className="bg-secondary/50 rounded-lg p-4 flex items-center gap-3 mt-4">
                     {os === 'mac' ? (
@@ -144,7 +144,7 @@ export default function Download() {
                 <div className="flex-1 space-y-2">
                   <h3 className="text-xl font-semibold">Få support</h3>
                   <p className="text-muted-foreground">
-                    Når Supremo er installeret, kan vores support-team forbinde til din computer og hjælpe dig
+                    Når Action1 agent er installeret, kan vores support-team forbinde til din computer og hjælpe dig
                   </p>
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function Download() {
           <div className="mt-12 p-6 bg-secondary/30 rounded-lg border">
             <h3 className="font-semibold mb-2">Brug for hjælp?</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Kontakt vores support-team hvis du har problemer med at downloade eller installere Supremo
+              Kontakt vores support-team hvis du har problemer med at downloade eller installere Action1 agent
             </p>
             <Button 
               variant="outline" 
