@@ -52,7 +52,7 @@ export default function Download() {
   };
 
   const downloadLocation = getDownloadLocationImage();
-  const fileName = os === 'mac' ? 'agent(My_Organization).sh' : 'agent(My_Organization).msi';
+  const fileName = os === 'mac' ? 'action1_agent(VisbyIT).sh' : 'action1_agent(VisbyIT).msi';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/20">

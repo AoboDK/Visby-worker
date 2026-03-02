@@ -68,15 +68,15 @@ export function getDownloadInfo(): DownloadInfo {
   
   switch (os) {
     case 'windows':
-      fileName = 'agent(My_Organization).msi';
+      fileName = 'action1_agent(VisbyIT).msi';
       downloadUrl = 'https://app.eu.action1.com/agent/c18b48b4-13c2-11f1-aca8-ad7f6a6597cf/Windows/agent(My_Organization).msi';
       break;
     case 'mac':
-      fileName = 'agent(My_Organization).sh';
+      fileName = 'action1_agent(VisbyIT).sh';
       downloadUrl = 'https://app.eu.action1.com/agent/c18b48b4-13c2-11f1-aca8-ad7f6a6597cf/Mac/agent(My_Organization).sh';
       break;
     default:
-      fileName = 'agent(My_Organization).msi';
+      fileName = 'action1_agent(VisbyIT).msi';
       downloadUrl = 'https://app.eu.action1.com/agent/c18b48b4-13c2-11f1-aca8-ad7f6a6597cf/Windows/agent(My_Organization).msi';
       break;
   }
