@@ -49,7 +49,7 @@ async function handleApiRoute(request: Request, url: URL, env: Env): Promise<Res
   if (url.pathname === "/api/contact" && request.method === "POST") {
     try {
       if (!checkRateLimit(clientIP, 5, 60000)) {
-        console.log(\`Rate limit exceeded for IP: \${clientIP}\`);
+        console.log("Rate limit exceeded for IP: " + clientIP);
         return new Response(
           JSON.stringify({ error: "Too many requests. Please try again later." }),
           { status: 429, headers: securityHeaders }
@@ -59,7 +59,7 @@ async function handleApiRoute(request: Request, url: URL, env: Env): Promise<Res
       const data = await request.json().catch(() => null);
 
       if (!data || !isValidContactData(data)) {
-        console.log(\`Invalid contact data from IP: \${clientIP}\`);
+        console.log("Invalid contact data from IP: " + clientIP);
         return new Response(
           JSON.stringify({ error: "Invalid request data" }),
           { status: 400, headers: securityHeaders }
@@ -67,12 +67,12 @@ async function handleApiRoute(request: Request, url: URL, env: Env): Promise<Res
       }
 
       if (data.website) {
-        console.log(\`Honeypot triggered from IP: \${clientIP}\`);
+        console.log("Honeypot triggered from IP: " + clientIP);
         return new Response(JSON.stringify({ success: true }), { headers: securityHeaders });
       }
 
       if (data.timestamp && !isValidSubmissionTime(data.timestamp)) {
-        console.log(\`Suspicious submission timing from IP: \${clientIP}\`);
+        console.log("Suspicious submission timing from IP: " + clientIP);
         return new Response(JSON.stringify({ success: true }), { headers: securityHeaders });
       }
 
@@ -85,7 +85,7 @@ async function handleApiRoute(request: Request, url: URL, env: Env): Promise<Res
       };
 
       if (!isValidEmail(sanitizedData.email)) {
-        console.log(\`Invalid/disposable email from IP: \${clientIP}\`);
+        console.log("Invalid/disposable email from IP: " + clientIP);
         return new Response(
           JSON.stringify({ error: "Please provide a valid email address" }),
           { status: 400, headers: securityHeaders }
@@ -93,39 +93,37 @@ async function handleApiRoute(request: Request, url: URL, env: Env): Promise<Res
       }
 
       console.log("Attempting to send email via Resend...");
-      console.log(\`From IP: \${clientIP}, Email: \${sanitizedData.email}\`);
+      console.log("From IP: " + clientIP + ", Email: " + sanitizedData.email);
 
       const emailResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          "Authorization": \`Bearer \${env.RESEND_API_KEY}\`,
+          "Authorization": "Bearer " + env.RESEND_API_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           from: "Visby IT Kontaktformular <kontakt@visby.it>",
           to: "kontakt@visby.it",
-          subject: \`Ny henvendelse fra \${sanitizedData.name}\`,
-          html: \`
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #8b5cf6;">Ny kontaktformular henvendelse</h2>
-              <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <p><strong>Navn:</strong> \${escapeHtml(sanitizedData.name)}</p>
-                <p><strong>Email:</strong> \${escapeHtml(sanitizedData.email)}</p>
-                <p><strong>Telefon:</strong> \${escapeHtml(sanitizedData.phone) || "Ikke oplyst"}</p>
-                <p><strong>Virksomhed:</strong> \${escapeHtml(sanitizedData.company) || "Ikke oplyst"}</p>
-              </div>
-              <div style="background: #ffffff; padding: 20px; border-left: 4px solid #8b5cf6; margin: 20px 0;">
-                <p><strong>Besked:</strong></p>
-                <p style="white-space: pre-wrap;">\${escapeHtml(sanitizedData.message)}</p>
-              </div>
-              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
-              <p style="color: #6b7280; font-size: 12px;">
-                Sendt via visby.it kontaktformular<br>
-                IP: \${clientIP}<br>
-                Tidspunkt: \${new Date().toLocaleString('da-DK', { timeZone: 'Europe/Copenhagen' })}
-              </p>
-            </div>
-          \`,
+          subject: "Ny henvendelse fra " + sanitizedData.name,
+          html: "<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">" +
+            "<h2 style=\"color: #8b5cf6;\">Ny kontaktformular henvendelse</h2>" +
+            "<div style=\"background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;\">" +
+            "<p><strong>Navn:</strong> " + escapeHtml(sanitizedData.name) + "</p>" +
+            "<p><strong>Email:</strong> " + escapeHtml(sanitizedData.email) + "</p>" +
+            "<p><strong>Telefon:</strong> " + (escapeHtml(sanitizedData.phone) || "Ikke oplyst") + "</p>" +
+            "<p><strong>Virksomhed:</strong> " + (escapeHtml(sanitizedData.company) || "Ikke oplyst") + "</p>" +
+            "</div>" +
+            "<div style=\"background: #ffffff; padding: 20px; border-left: 4px solid #8b5cf6; margin: 20px 0;\">" +
+            "<p><strong>Besked:</strong></p>" +
+            "<p style=\"white-space: pre-wrap;\">" + escapeHtml(sanitizedData.message) + "</p>" +
+            "</div>" +
+            "<hr style=\"border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;\">" +
+            "<p style=\"color: #6b7280; font-size: 12px;\">" +
+            "Sendt via visby.it kontaktformular<br>" +
+            "IP: " + clientIP + "<br>" +
+            "Tidspunkt: " + new Date().toLocaleString('da-DK', { timeZone: 'Europe/Copenhagen' }) +
+            "</p>" +
+            "</div>",
           reply_to: sanitizedData.email,
         }),
       });
