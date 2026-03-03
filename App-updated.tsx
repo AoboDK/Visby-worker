@@ -9,6 +9,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Contact from "@/pages/Contact";
 import Download from "@/pages/Download";
+import Privacy from "@/pages/Privacy";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/contact" component={Contact} />
       <Route path="/download" component={Download} />
+      <Route path="/privacy" component={Privacy} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
